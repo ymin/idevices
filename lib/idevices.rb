@@ -1,7 +1,6 @@
 module Idevices
   extend self
 
-
   def available_real_devices
     real_devices_list = Hash.new
     

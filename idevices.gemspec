@@ -1,3 +1,5 @@
+require_relative 'lib/version'
+
 Gem::Specification.new do |s|
   s.name        = 'idevices'
   s.version     = Idevices::VERSION
