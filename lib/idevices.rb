@@ -42,9 +42,8 @@ module Idevices
   end
 
   def device_info(udid)
-    real_devices_list = Hash.new
     device_info_raw = `ideviceinfo -u #{udid}`
-    if device_info_raw.include?(' ')
+    if device_info_raw.lines.first.include?(udid)
       fail device_info_raw
     end
     device_name     = /DeviceName: (.*)\n/.match(device_info_raw)[1]
@@ -70,6 +69,10 @@ module Idevices
                         wifi_ip_address: wifi_ip_address
                       }
     }
+  end
+
+  def install_app(udid, app)
+    `ideviceinstall -u #{udid} #{app}`
   end
 
 end
