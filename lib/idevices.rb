@@ -44,6 +44,9 @@ module Idevices
   def device_info(udid)
     real_devices_list = Hash.new
     device_info_raw = `ideviceinfo -u #{udid}`
+    if device_info_raw.include?(' ')
+      fail device_info_raw
+    end
     device_name     = /DeviceName: (.*)\n/.match(device_info_raw)[1]
     product_name    = /ProductName: (.*)\n/.match(device_info_raw)[1]
     product_type    = /ProductType: (.*)\n/.match(device_info_raw)[1]
