@@ -51,7 +51,7 @@ module Idevices
     product_type    = /ProductType: (.*)\n/.match(device_info_raw)[1]
     product_version = /ProductVersion: (.*)\n/.match(device_info_raw)[1]
     wifi_address    = /WiFiAddress: (.*)\n/.match(device_info_raw)[1]
-    wifi_ip_raw = `arp -a | grep #{wifi_address.gsub('0', '')}`
+    wifi_ip_raw = `arp -a | grep #{wifi_address.gsub(':0', ':')}`
     wifi_ip_address = 'unknown'
     wifi_ip_raw = `arp -a | grep #{device_name.downcase + '.'}` if wifi_ip_raw == ''
      
