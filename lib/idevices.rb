@@ -51,15 +51,15 @@ module Idevices
     product_type    = /ProductType: (.*)\n/.match(device_info_raw)[1]
     product_version = /ProductVersion: (.*)\n/.match(device_info_raw)[1]
     wifi_address    = /WiFiAddress: (.*)\n/.match(device_info_raw)[1]
-    wifi_ip_raw = `arp -a | grep #{wifi_address.gsub(':0', ':')}`
+    # wifi_ip_raw = `arp -a | grep #{wifi_address.gsub(':0', ':')}`
     wifi_ip_address = 'unknown'
-    wifi_ip_raw = `arp -a | grep #{device_name.downcase + '.'}` if wifi_ip_raw == ''
+    # wifi_ip_raw = `arp -a | grep #{device_name.downcase + '.'}` if wifi_ip_raw == ''
      
-    if wifi_ip_raw == ''
-      warn "Can't find device #{udid} ip by MAC, try to reconnect wifi"
-    else
-      wifi_ip_address = /\((.*?)\)/.match(wifi_ip_raw)[1]
-    end
+    # if wifi_ip_raw == ''
+    #   warn "Can't find device #{udid} ip by MAC, try to reconnect wifi"
+    # else
+    #   wifi_ip_address = /\((.*?)\)/.match(wifi_ip_raw)[1]
+    # end
     { 
       device_name => { 
                               device_id: udid,
