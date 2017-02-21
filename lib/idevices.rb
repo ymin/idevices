@@ -41,7 +41,10 @@ module Idevices
     available_real_devices.merge(available_simulators)
   end
 
-  def device_info(udid)
+  def device_info(udid = nil)
+    if udid.nil?
+      udid = `idevice_id -l`.chomp
+    end
     device_info_raw = `ideviceinfo -u #{udid}`
     if device_info_raw.lines.first.include?(udid)
       fail device_info_raw
